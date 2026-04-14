@@ -5,270 +5,740 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Island Ice Co.</title>
   <style>
-    :root{
-      --teal:#0f8b8d;
-      --dark:#12343b;
-      --yellow:#f4c542;
-      --light:#f8fbfc;
-      --white:#ffffff;
-      --gray:#6b7280;
+    :root {
+      --teal: #14b8b5;
+      --deep-teal: #0f766e;
+      --yellow: #ffd54a;
+      --orange: #ff9f43;
+      --pink: #ff6fae;
+      --sky: #67d5ff;
+      --navy: #0f172a;
+      --white: #ffffff;
+      --offwhite: #f8fdff;
+      --light: #ecfeff;
+      --gray: #64748b;
+      --shadow: 0 14px 35px rgba(15, 23, 42, 0.12);
+      --radius: 22px;
     }
 
-    *{
-      box-sizing:border-box;
-      margin:0;
-      padding:0;
-      scroll-behavior:smooth;
-      font-family:Arial, Helvetica, sans-serif;
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
     }
 
-    body{
-      background:var(--light);
-      color:var(--dark);
-      line-height:1.6;
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(103, 213, 255, 0.25), transparent 25%),
+        radial-gradient(circle at top right, rgba(255, 111, 174, 0.18), transparent 20%),
+        linear-gradient(180deg, #faffff 0%, #eefcff 100%);
+      color: var(--navy);
+      overflow-x: hidden;
     }
 
-    nav{
-      position:sticky;
-      top:0;
-      z-index:1000;
-      background:var(--white);
-      border-bottom:2px solid #e5e7eb;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      padding:14px 24px;
+    a {
+      text-decoration: none;
+      color: inherit;
     }
 
-    .logo{
-      font-size:1.4rem;
-      font-weight:700;
-      color:var(--teal);
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(12px);
+      background: rgba(255, 255, 255, 0.86);
+      border-bottom: 1px solid rgba(15, 23, 42, 0.08);
     }
 
-    .nav-links{
-      display:flex;
-      gap:18px;
-      flex-wrap:wrap;
+    .nav {
+      max-width: 1200px;
+      margin: auto;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
     }
 
-    .nav-links a{
-      text-decoration:none;
-      color:var(--dark);
-      font-weight:600;
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      font-size: 1.2rem;
+      color: var(--deep-teal);
     }
 
-    .nav-links a:hover{
-      color:var(--teal);
+    .brand-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      font-size: 1.3rem;
+      background: linear-gradient(135deg, var(--teal), var(--yellow));
+      box-shadow: var(--shadow);
     }
 
-    header{
-      min-height:90vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      padding:40px 20px;
-      background:linear-gradient(rgba(15,139,141,.85), rgba(18,52,59,.85)),
-      url("https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=1200&q=80") center/cover no-repeat;
-      color:white;
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      font-weight: 700;
+      color: var(--navy);
     }
 
-    .hero{
-      max-width:800px;
+    .nav-links a {
+      padding: 8px 10px;
+      border-radius: 999px;
+      transition: 0.2s ease;
     }
 
-    .hero h1{
-      font-size:3rem;
-      margin-bottom:10px;
+    .nav-links a:hover {
+      background: rgba(20, 184, 181, 0.12);
+      color: var(--deep-teal);
     }
 
-    .hero p{
-      font-size:1.15rem;
-      margin-bottom:20px;
+    .hero {
+      position: relative;
+      min-height: 94vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 70px 20px 50px;
+      overflow: hidden;
     }
 
-    .btn{
-      display:inline-block;
-      background:var(--yellow);
-      color:var(--dark);
-      padding:12px 22px;
-      text-decoration:none;
-      border-radius:999px;
-      font-weight:700;
-      margin:6px;
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(20px);
+      opacity: 0.55;
+      z-index: 0;
     }
 
-    .btn.secondary{
-      background:transparent;
-      border:2px solid white;
-      color:white;
+    .hero::before {
+      width: 340px;
+      height: 340px;
+      background: linear-gradient(135deg, var(--sky), var(--teal));
+      top: -80px;
+      left: -80px;
     }
 
-    section{
-      padding:60px 20px;
+    .hero::after {
+      width: 360px;
+      height: 360px;
+      background: linear-gradient(135deg, var(--pink), var(--yellow));
+      right: -120px;
+      bottom: -100px;
     }
 
-    .container{
-      max-width:1100px;
-      margin:auto;
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 28px;
+      align-items: center;
     }
 
-    h2{
-      text-align:center;
-      margin-bottom:24px;
-      font-size:2rem;
-      color:var(--dark);
+    .hero-text {
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(255,255,255,0.8);
+      backdrop-filter: blur(12px);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      padding: 42px;
     }
 
-    .about, .contact, .events{
-      text-align:center;
+    .eyebrow {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--yellow), var(--orange));
+      color: var(--navy);
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: 0.9rem;
+      margin-bottom: 16px;
     }
 
-    .menu-grid, .popular-grid, .social-grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
-      gap:20px;
-      margin-top:25px;
+    .hero h1 {
+      font-size: 3.6rem;
+      line-height: 1.02;
+      margin-bottom: 16px;
+      color: var(--deep-teal);
     }
 
-    .card{
-      background:var(--white);
-      border-radius:18px;
-      padding:22px;
-      box-shadow:0 10px 25px rgba(0,0,0,.08);
+    .hero p {
+      font-size: 1.08rem;
+      color: #244256;
+      max-width: 620px;
+      margin-bottom: 22px;
     }
 
-    .card h3{
-      margin-bottom:12px;
-      color:var(--teal);
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 22px;
     }
 
-    ul{
-      list-style:none;
+    .btn {
+      border: none;
+      cursor: pointer;
+      padding: 14px 20px;
+      border-radius: 999px;
+      font-weight: 800;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
     }
 
-    li{
-      margin:8px 0;
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.14);
     }
 
-    .menu-price{
-      font-weight:700;
-      color:var(--dark);
+    .btn-primary {
+      background: linear-gradient(135deg, var(--teal), var(--sky));
+      color: var(--white);
     }
 
-    .highlight{
-      color:var(--teal);
-      font-weight:700;
+    .btn-secondary {
+      background: linear-gradient(135deg, var(--yellow), var(--orange));
+      color: var(--navy);
     }
 
-    .event-list{
-      max-width:650px;
-      margin:20px auto 0;
-      text-align:left;
-      background:var(--white);
-      padding:24px;
-      border-radius:18px;
-      box-shadow:0 10px 25px rgba(0,0,0,.08);
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
     }
 
-    .event-item{
-      padding:12px 0;
-      border-bottom:1px solid #e5e7eb;
+    .badge {
+      padding: 10px 14px;
+      background: rgba(20, 184, 181, 0.08);
+      color: var(--deep-teal);
+      border: 1px solid rgba(20, 184, 181, 0.12);
+      border-radius: 999px;
+      font-size: 0.92rem;
+      font-weight: 700;
     }
 
-    .event-item:last-child{
-      border-bottom:none;
+    .hero-card {
+      position: relative;
+      background: linear-gradient(160deg, #13bcb4 0%, #67d5ff 35%, #ffd54a 100%);
+      border-radius: 30px;
+      min-height: 480px;
+      box-shadow: var(--shadow);
+      padding: 28px;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
     }
 
-    .contact p, .about p{
-      max-width:700px;
-      margin:10px auto;
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 18%, rgba(255,255,255,0.75), transparent 18%),
+        radial-gradient(circle at 75% 15%, rgba(255,255,255,0.35), transparent 16%),
+        radial-gradient(circle at 85% 75%, rgba(255,255,255,0.25), transparent 18%);
     }
 
-    footer{
-      background:var(--dark);
-      color:white;
-      text-align:center;
-      padding:24px 16px;
-      margin-top:20px;
+    .cup {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      background: rgba(255,255,255,0.22);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.45);
+      border-radius: 28px;
+      padding: 24px;
+      color: var(--white);
     }
 
-    @media (max-width:700px){
-      .hero h1{
-        font-size:2.2rem;
+    .cup h3 {
+      font-size: 2rem;
+      margin-bottom: 8px;
+    }
+
+    .cup p {
+      font-weight: 600;
+      color: rgba(255,255,255,0.95);
+      margin-bottom: 14px;
+    }
+
+    .flavor-dots {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+
+    .dot {
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--navy);
+      background: rgba(255,255,255,0.85);
+    }
+
+    section {
+      padding: 78px 20px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .section-tag {
+      display: inline-block;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255, 159, 67, 0.14);
+      color: #cc6c00;
+      font-size: 0.88rem;
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
+
+    .section-title {
+      font-size: 2.3rem;
+      margin-bottom: 12px;
+      color: var(--deep-teal);
+    }
+
+    .section-desc {
+      color: var(--gray);
+      max-width: 760px;
+      margin-bottom: 28px;
+      font-size: 1rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.88);
+      border: 1px solid rgba(15, 23, 42, 0.05);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 24px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 34px rgba(15, 23, 42, 0.14);
+    }
+
+    .card h3 {
+      margin-bottom: 12px;
+      color: var(--deep-teal);
+      font-size: 1.2rem;
+    }
+
+    .card p {
+      color: #334155;
+    }
+
+    .mini-icon {
+      width: 50px;
+      height: 50px;
+      display: grid;
+      place-items: center;
+      border-radius: 16px;
+      font-size: 1.4rem;
+      margin-bottom: 14px;
+      background: linear-gradient(135deg, var(--yellow), var(--pink));
+    }
+
+    .menu-layout {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .menu-box {
+      background: linear-gradient(180deg, #ffffff 0%, #f8feff 100%);
+      border: 1px solid rgba(15, 23, 42, 0.06);
+      border-radius: 28px;
+      padding: 26px;
+      box-shadow: var(--shadow);
+    }
+
+    .menu-box h3 {
+      color: var(--deep-teal);
+      margin-bottom: 16px;
+      font-size: 1.3rem;
+    }
+
+    .menu-line {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(15, 23, 42, 0.07);
+      font-weight: 700;
+    }
+
+    .menu-line:last-child {
+      border-bottom: none;
+    }
+
+    .price {
+      color: #0f766e;
+    }
+
+    .flavors {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .flavor-pill {
+      padding: 12px 14px;
+      border-radius: 999px;
+      font-weight: 800;
+      color: var(--navy);
+      background: linear-gradient(135deg, rgba(103,213,255,0.28), rgba(255,213,74,0.45));
+      border: 1px solid rgba(20, 184, 181, 0.12);
+    }
+
+    .popular-card {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .popular-card::after {
+      content: "";
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      right: -30px;
+      top: -30px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,213,74,0.35), transparent 70%);
+    }
+
+    .popular-card .combo {
+      display: inline-block;
+      margin-bottom: 10px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(20, 184, 181, 0.1);
+      color: var(--deep-teal);
+      font-weight: 800;
+      font-size: 0.86rem;
+    }
+
+    .schedule {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .day-card {
+      border-radius: 24px;
+      padding: 24px;
+      color: var(--white);
+      box-shadow: var(--shadow);
+    }
+
+    .day-card:nth-child(1) {
+      background: linear-gradient(135deg, var(--teal), var(--sky));
+    }
+
+    .day-card:nth-child(2) {
+      background: linear-gradient(135deg, var(--orange), var(--yellow));
+      color: var(--navy);
+    }
+
+    .day-card:nth-child(3) {
+      background: linear-gradient(135deg, var(--pink), #ff8cc6);
+    }
+
+    .day-card h3 {
+      margin-bottom: 8px;
+      font-size: 1.3rem;
+    }
+
+    .about-box {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .about-feature {
+      background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(240,254,255,0.96));
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(15,23,42,0.05);
+    }
+
+    .contact-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+    }
+
+    .contact-panel {
+      background: rgba(255,255,255,0.9);
+      border-radius: 28px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(15, 23, 42, 0.06);
+    }
+
+    .contact-item {
+      margin-bottom: 16px;
+      padding: 14px 16px;
+      border-radius: 18px;
+      background: rgba(20, 184, 181, 0.06);
+      font-weight: 700;
+      color: #214152;
+    }
+
+    .socials {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .social-btn {
+      padding: 13px 16px;
+      border-radius: 999px;
+      font-weight: 800;
+      color: var(--white);
+      background: linear-gradient(135deg, var(--deep-teal), var(--teal));
+      transition: transform 0.18s ease, opacity 0.18s ease;
+    }
+
+    .social-btn:nth-child(2) {
+      background: linear-gradient(135deg, var(--pink), var(--orange));
+    }
+
+    .social-btn:hover {
+      transform: translateY(-2px);
+      opacity: 0.95;
+    }
+
+    .footer {
+      padding: 28px 20px 40px;
+      text-align: center;
+      color: #476071;
+    }
+
+    .footer strong {
+      color: var(--deep-teal);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: all 0.65s ease;
+    }
+
+    .reveal.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 980px) {
+      .hero-inner,
+      .menu-layout,
+      .about-box,
+      .contact-wrap,
+      .grid-3,
+      .grid-2,
+      .schedule {
+        grid-template-columns: 1fr;
       }
 
-      nav{
-        flex-direction:column;
-        gap:10px;
+      .hero h1 {
+        font-size: 2.8rem;
       }
 
-      .nav-links{
-        justify-content:center;
+      .hero-card {
+        min-height: 320px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        gap: 10px;
+      }
+
+      .hero-text,
+      .hero-card,
+      .menu-box,
+      .contact-panel,
+      .card,
+      .about-feature {
+        padding: 20px;
+      }
+
+      .hero h1 {
+        font-size: 2.25rem;
+      }
+
+      .section-title {
+        font-size: 1.9rem;
       }
     }
   </style>
 </head>
 <body>
+  <div class="topbar">
+    <div class="nav">
+      <a href="#home" class="brand">
+        <div class="brand-icon">🍧</div>
+        <span>Island Ice Co.</span>
+      </a>
 
-  <nav>
-    <div class="logo">Island Ice Co.</div>
-    <div class="nav-links">
-      <a href="#home">Home</a>
-      <a href="#menu">Menu</a>
-      <a href="#popular">Popular Items</a>
-      <a href="#events">Event Schedule</a>
-      <a href="#about">About Us</a>
-      <a href="#contact">Contact</a>
+      <div class="nav-links">
+        <a href="#menu">Menu</a>
+        <a href="#popular">Popular</a>
+        <a href="#schedule">Events</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </div>
     </div>
-  </nav>
+  </div>
 
-  <header id="home">
-    <div class="hero">
-      <h1>Island Ice Co.</h1>
-      <p>Taste the tropics.</p>
-      <p>Tropical shaved ice with bright flavors, fast service, and a fun summer vibe.</p>
-      <a href="#menu" class="btn">View Menu</a>
-      <a href="#contact" class="btn secondary">Book Us</a>
+  <section class="hero" id="home">
+    <div class="hero-inner">
+      <div class="hero-text reveal">
+        <div class="eyebrow">TROPICAL SHAVED ICE • SUMMER VIBES</div>
+        <h1>Island Ice Co.</h1>
+        <p>
+          Taste the tropics with bold shaved ice flavors, bright branding, and a fun colorful vibe made for parks, school events, and summer days.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="#menu" class="btn btn-primary">View Menu</a>
+          <a href="#contact" class="btn btn-secondary">Book the Truck</a>
+        </div>
+
+        <div class="hero-badges">
+          <div class="badge">Mango • Pineapple • Coconut</div>
+          <div class="badge">Fast service</div>
+          <div class="badge">Perfect for events</div>
+        </div>
+      </div>
+
+      <div class="hero-card reveal">
+        <div class="cup">
+          <h3>Signature Tropical Ice</h3>
+          <p>Colorful, refreshing, and made to match the whole island theme.</p>
+          <div class="flavor-dots">
+            <span class="dot">Mango</span>
+            <span class="dot">Piña Colada</span>
+            <span class="dot">Passionfruit</span>
+            <span class="dot">Coconut</span>
+          </div>
+        </div>
+      </div>
     </div>
-  </header>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-tag reveal">WHY PEOPLE WOULD LIKE IT</div>
+      <h2 class="section-title reveal">Bright branding, easy menu, tropical vibe.</h2>
+      <p class="section-desc reveal">
+        The whole brand is supposed to feel colorful, summery, and easy to order from, like a real food truck that would stand out at events.
+      </p>
+
+      <div class="grid-3">
+        <div class="card reveal">
+          <div class="mini-icon">🌴</div>
+          <h3>Tropical Theme</h3>
+          <p>Everything matches the island look, from the colors to the menu flavors.</p>
+        </div>
+
+        <div class="card reveal">
+          <div class="mini-icon">⚡</div>
+          <h3>Quick Ordering</h3>
+          <p>Simple sizes, simple add-ons, and clear sections make it easy for customers.</p>
+        </div>
+
+        <div class="card reveal">
+          <div class="mini-icon">📸</div>
+          <h3>Social Media Ready</h3>
+          <p>Bright colors and signature items make the brand look good online too.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <section id="menu">
     <div class="container">
-      <h2>Our Menu</h2>
+      <div class="section-tag reveal">FULL MENU</div>
+      <h2 class="section-title reveal">Choose your size, flavor, and add-ons.</h2>
+      <p class="section-desc reveal">
+        A simple setup with tropical flavors only, so it still feels unique but realistic to run in real life.
+      </p>
 
-      <div class="menu-grid">
-        <div class="card">
+      <div class="menu-layout">
+        <div class="menu-box reveal">
           <h3>Sizes</h3>
-          <ul>
-            <li>Small (8 oz) <span class="menu-price">- $3</span></li>
-            <li>Medium (12 oz) <span class="menu-price">- $4</span></li>
-            <li>Large (16 oz) <span class="menu-price">- $5</span></li>
-          </ul>
+          <div class="menu-line"><span>Small (8 oz)</span><span class="price">$3</span></div>
+          <div class="menu-line"><span>Medium (12 oz)</span><span class="price">$4</span></div>
+          <div class="menu-line"><span>Large (16 oz)</span><span class="price">$5</span></div>
+
+          <h3 style="margin-top: 28px;">Add-Ons</h3>
+          <div class="menu-line"><span>Sweetened Condensed Milk</span><span class="price">+$1</span></div>
+          <div class="menu-line"><span>Sour Spray</span><span class="price">+$1</span></div>
+          <div class="menu-line"><span>Gummy Bears</span><span class="price">+$1</span></div>
         </div>
 
-        <div class="card">
+        <div class="menu-box reveal">
           <h3>Tropical Flavors</h3>
-          <ul>
-            <li>Mango</li>
-            <li>Pineapple</li>
-            <li>Coconut</li>
-            <li>Passionfruit</li>
-            <li>Watermelon</li>
-            <li>Tropical Punch</li>
-            <li>Blue Raspberry</li>
-            <li>Piña Colada</li>
-          </ul>
-        </div>
+          <div class="flavors">
+            <span class="flavor-pill">Mango</span>
+            <span class="flavor-pill">Pineapple</span>
+            <span class="flavor-pill">Coconut</span>
+            <span class="flavor-pill">Passionfruit</span>
+            <span class="flavor-pill">Watermelon</span>
+            <span class="flavor-pill">Tropical Punch</span>
+            <span class="flavor-pill">Blue Raspberry</span>
+            <span class="flavor-pill">Piña Colada</span>
+          </div>
 
-        <div class="card">
-          <h3>Add-Ons</h3>
-          <ul>
-            <li>Sweetened Condensed Milk <span class="menu-price">- $1</span></li>
-            <li>Sour Spray <span class="menu-price">- $1</span></li>
-            <li>Gummy Bears <span class="menu-price">- $1</span></li>
-          </ul>
+          <h3 style="margin-top: 28px;">What makes it stand out</h3>
+          <p>
+            The menu is colorful and easy to read, and the flavors fit the same tropical look as the business card and menu design.
+          </p>
         </div>
       </div>
     </div>
@@ -276,86 +746,169 @@
 
   <section id="popular">
     <div class="container">
-      <h2>Most Popular Items</h2>
+      <div class="section-tag reveal">BEST SELLERS</div>
+      <h2 class="section-title reveal">Most popular menu items.</h2>
+      <p class="section-desc reveal">
+        These are the signature combos that would probably sell the most because they fit the theme and sound memorable.
+      </p>
 
-      <div class="popular-grid">
-        <div class="card">
+      <div class="grid-3">
+        <div class="card popular-card reveal">
+          <span class="combo">BEST SELLER</span>
           <h3>Island Special</h3>
-          <p class="highlight">Mango + Pineapple + Coconut</p>
-          <p>This is our best seller because it mixes the main tropical flavors and tastes super refreshing.</p>
+          <p><strong>Mango + Pineapple + Coconut</strong></p>
+          <p style="margin-top: 10px;">
+            This is the most popular because it mixes the main tropical flavors and matches the brand perfectly.
+          </p>
         </div>
 
-        <div class="card">
+        <div class="card popular-card reveal">
+          <span class="combo">CREAMY PICK</span>
           <h3>Piña Colada Chill</h3>
-          <p class="highlight">Piña Colada + Coconut + Condensed Milk</p>
-          <p>This one is popular because it tastes sweeter and more creamy, almost like a tropical drink.</p>
+          <p><strong>Piña Colada + Coconut + Condensed Milk</strong></p>
+          <p style="margin-top: 10px;">
+            This one stands out because it tastes sweeter and smoother, kind of like a tropical drink.
+          </p>
         </div>
 
-        <div class="card">
+        <div class="card popular-card reveal">
+          <span class="combo">COLORFUL PICK</span>
           <h3>Tropical Punch Mix</h3>
-          <p class="highlight">Tropical Punch + Watermelon + Blue Raspberry</p>
-          <p>This one stands out because it is colorful, fruity, and easy to remember.</p>
+          <p><strong>Tropical Punch + Watermelon + Blue Raspberry</strong></p>
+          <p style="margin-top: 10px;">
+            This one is bright, fruity, and eye-catching, so it would probably be really popular at events.
+          </p>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="events" class="events">
+  <section id="schedule">
     <div class="container">
-      <h2>Event Schedule</h2>
-      <p>Catch us at local parks, school events, and summer festivals around Riverside and Brookfield.</p>
+      <div class="section-tag reveal">WHERE TO FIND US</div>
+      <h2 class="section-title reveal">Event schedule.</h2>
+      <p class="section-desc reveal">
+        A simple schedule section makes the site feel more like a real food truck homepage.
+      </p>
 
-      <div class="event-list">
-        <div class="event-item">
-          <strong>Friday:</strong> Riverside Park - 3:00 PM to 7:00 PM
+      <div class="schedule">
+        <div class="day-card reveal">
+          <h3>Friday</h3>
+          <p><strong>Riverside Park</strong></p>
+          <p>3:00 PM – 7:00 PM</p>
         </div>
-        <div class="event-item">
-          <strong>Saturday:</strong> Brookfield Community Event - 12:00 PM to 5:00 PM
+
+        <div class="day-card reveal">
+          <h3>Saturday</h3>
+          <p><strong>Brookfield Community Event</strong></p>
+          <p>12:00 PM – 5:00 PM</p>
         </div>
-        <div class="event-item">
-          <strong>Sunday:</strong> Local Sports Fields - 1:00 PM to 6:00 PM
+
+        <div class="day-card reveal">
+          <h3>Sunday</h3>
+          <p><strong>Local Sports Fields</strong></p>
+          <p>1:00 PM – 6:00 PM</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="about" class="about">
+  <section id="about">
     <div class="container">
-      <h2>About Us</h2>
-      <p>Island Ice Co. is a tropical shaved ice food truck made to bring fun summer flavors to local events.</p>
-      <p>We focus on simple menu options, bright branding, and fast service so customers can grab something cold and refreshing on the go.</p>
-    </div>
-  </section>
+      <div class="section-tag reveal">ABOUT THE BRAND</div>
+      <h2 class="section-title reveal">Made to feel fun, colorful, and professional.</h2>
+      <p class="section-desc reveal">
+        The goal of the homepage is to look engaging, easy to use, and clear about what the food truck sells.
+      </p>
 
-  <section id="contact" class="contact">
-    <div class="container">
-      <h2>Contact Us</h2>
-
-      <div class="social-grid">
-        <div class="card">
-          <h3>Contact Info</h3>
-          <p><strong>Owner:</strong> Philip N.</p>
-          <p><strong>Email:</strong> 26nekrashchukpx@rbhs.com</p>
-          <p><strong>Phone:</strong> (555) 214-7789</p>
+      <div class="about-box">
+        <div class="about-feature reveal">
+          <h3>Branding</h3>
+          <p>
+            The colors are bright like the business card and menu, so everything matches and looks like one real brand.
+          </p>
         </div>
 
-        <div class="card">
-          <h3>Social Media</h3>
-          <p><strong>Instagram:</strong> @IslandIceCo</p>
-          <p><strong>TikTok:</strong> @IslandIceCo</p>
+        <div class="about-feature reveal">
+          <h3>Easy Navigation</h3>
+          <p>
+            The navigation bar makes it easy for customers to jump to the menu, event schedule, and contact info fast.
+          </p>
         </div>
 
-        <div class="card">
-          <h3>Service Area</h3>
-          <p>Serving local parks, school events, neighborhoods, and community events around Riverside and Brookfield.</p>
+        <div class="about-feature reveal">
+          <h3>Accessibility of Info</h3>
+          <p>
+            Important information like prices, popular items, social media, and booking contact is easy to find.
+          </p>
+        </div>
+
+        <div class="about-feature reveal">
+          <h3>Professional but Engaging</h3>
+          <p>
+            The layout is more modern and interactive so it looks better than a plain school project website.
+          </p>
         </div>
       </div>
     </div>
   </section>
 
-  <footer>
-    <p>Island Ice Co. | Taste the tropics.</p>
-  </footer>
+  <section id="contact">
+    <div class="container">
+      <div class="section-tag reveal">CONTACT + SOCIALS</div>
+      <h2 class="section-title reveal">Book Island Ice Co.</h2>
+      <p class="section-desc reveal">
+        Clear contact info makes the site feel complete and realistic.
+      </p>
 
+      <div class="contact-wrap">
+        <div class="contact-panel reveal">
+          <h3 style="margin-bottom: 16px; color: var(--deep-teal);">Contact Information</h3>
+          <div class="contact-item">Owner: Philip N.</div>
+          <div class="contact-item">Email: 26nekrashchukpx@rbhs.com</div>
+          <div class="contact-item">Phone: (555) 214-7789</div>
+          <div class="contact-item">Service Area: Riverside / Brookfield</div>
+        </div>
+
+        <div class="contact-panel reveal">
+          <h3 style="margin-bottom: 16px; color: var(--deep-teal);">Social Media</h3>
+          <p style="margin-bottom: 14px; color: #334155;">
+            These would help promote the brand and make the truck easier to find online.
+          </p>
+
+          <div class="socials">
+            <a class="social-btn" href="#">Instagram: @IslandIceCo</a>
+            <a class="social-btn" href="#">TikTok: @IslandIceCo</a>
+          </div>
+
+          <div style="margin-top: 22px;" class="contact-item">
+            Tagline: Taste the tropics.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer">
+    <p><strong>Island Ice Co.</strong> • Taste the tropics.</p>
+  </div>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+
+    const revealOnScroll = () => {
+      const triggerBottom = window.innerHeight * 0.88;
+
+      reveals.forEach((item) => {
+        const top = item.getBoundingClientRect().top;
+        if (top < triggerBottom) {
+          item.classList.add('show');
+        }
+      });
+    };
+
+    revealOnScroll();
+    window.addEventListener('scroll', revealOnScroll);
+  </script>
 </body>
 </html>
