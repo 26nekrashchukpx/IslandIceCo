@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Island Ice Co.</title>
+  <style>
+    :root{
+      --teal:#0f8b8d;
+      --dark:#12343b;
+      --yellow:#f4c542;
+      --light:#f8fbfc;
+      --white:#ffffff;
+      --gray:#6b7280;
+    }
+
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+      scroll-behavior:smooth;
+      font-family:Arial, Helvetica, sans-serif;
+    }
+
+    body{
+      background:var(--light);
+      color:var(--dark);
+      line-height:1.6;
+    }
+
+    nav{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      background:var(--white);
+      border-bottom:2px solid #e5e7eb;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:14px 24px;
+    }
+
+    .logo{
+      font-size:1.4rem;
+      font-weight:700;
+      color:var(--teal);
+    }
+
+    .nav-links{
+      display:flex;
+      gap:18px;
+      flex-wrap:wrap;
+    }
+
+    .nav-links a{
+      text-decoration:none;
+      color:var(--dark);
+      font-weight:600;
+    }
+
+    .nav-links a:hover{
+      color:var(--teal);
+    }
+
+    header{
+      min-height:90vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:40px 20px;
+      background:linear-gradient(rgba(15,139,141,.85), rgba(18,52,59,.85)),
+      url("https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=1200&q=80") center/cover no-repeat;
+      color:white;
+    }
+
+    .hero{
+      max-width:800px;
+    }
+
+    .hero h1{
+      font-size:3rem;
+      margin-bottom:10px;
+    }
+
+    .hero p{
+      font-size:1.15rem;
+      margin-bottom:20px;
+    }
+
+    .btn{
+      display:inline-block;
+      background:var(--yellow);
+      color:var(--dark);
+      padding:12px 22px;
+      text-decoration:none;
+      border-radius:999px;
+      font-weight:700;
+      margin:6px;
+    }
+
+    .btn.secondary{
+      background:transparent;
+      border:2px solid white;
+      color:white;
+    }
+
+    section{
+      padding:60px 20px;
+    }
+
+    .container{
+      max-width:1100px;
+      margin:auto;
+    }
+
+    h2{
+      text-align:center;
+      margin-bottom:24px;
+      font-size:2rem;
+      color:var(--dark);
+    }
+
+    .about, .contact, .events{
+      text-align:center;
+    }
+
+    .menu-grid, .popular-grid, .social-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
+      gap:20px;
+      margin-top:25px;
+    }
+
+    .card{
+      background:var(--white);
+      border-radius:18px;
+      padding:22px;
+      box-shadow:0 10px 25px rgba(0,0,0,.08);
+    }
+
+    .card h3{
+      margin-bottom:12px;
+      color:var(--teal);
+    }
+
+    ul{
+      list-style:none;
+    }
+
+    li{
+      margin:8px 0;
+    }
+
+    .menu-price{
+      font-weight:700;
+      color:var(--dark);
+    }
+
+    .highlight{
+      color:var(--teal);
+      font-weight:700;
+    }
+
+    .event-list{
+      max-width:650px;
+      margin:20px auto 0;
+      text-align:left;
+      background:var(--white);
+      padding:24px;
+      border-radius:18px;
+      box-shadow:0 10px 25px rgba(0,0,0,.08);
+    }
+
+    .event-item{
+      padding:12px 0;
+      border-bottom:1px solid #e5e7eb;
+    }
+
+    .event-item:last-child{
+      border-bottom:none;
+    }
+
+    .contact p, .about p{
+      max-width:700px;
+      margin:10px auto;
+    }
+
+    footer{
+      background:var(--dark);
+      color:white;
+      text-align:center;
+      padding:24px 16px;
+      margin-top:20px;
+    }
+
+    @media (max-width:700px){
+      .hero h1{
+        font-size:2.2rem;
+      }
+
+      nav{
+        flex-direction:column;
+        gap:10px;
+      }
+
+      .nav-links{
+        justify-content:center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo">Island Ice Co.</div>
+    <div class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#menu">Menu</a>
+      <a href="#popular">Popular Items</a>
+      <a href="#events">Event Schedule</a>
+      <a href="#about">About Us</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <header id="home">
+    <div class="hero">
+      <h1>Island Ice Co.</h1>
+      <p>Taste the tropics.</p>
+      <p>Tropical shaved ice with bright flavors, fast service, and a fun summer vibe.</p>
+      <a href="#menu" class="btn">View Menu</a>
+      <a href="#contact" class="btn secondary">Book Us</a>
+    </div>
+  </header>
+
+  <section id="menu">
+    <div class="container">
+      <h2>Our Menu</h2>
+
+      <div class="menu-grid">
+        <div class="card">
+          <h3>Sizes</h3>
+          <ul>
+            <li>Small (8 oz) <span class="menu-price">- $3</span></li>
+            <li>Medium (12 oz) <span class="menu-price">- $4</span></li>
+            <li>Large (16 oz) <span class="menu-price">- $5</span></li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Tropical Flavors</h3>
+          <ul>
+            <li>Mango</li>
+            <li>Pineapple</li>
+            <li>Coconut</li>
+            <li>Passionfruit</li>
+            <li>Watermelon</li>
+            <li>Tropical Punch</li>
+            <li>Blue Raspberry</li>
+            <li>Piña Colada</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Add-Ons</h3>
+          <ul>
+            <li>Sweetened Condensed Milk <span class="menu-price">- $1</span></li>
+            <li>Sour Spray <span class="menu-price">- $1</span></li>
+            <li>Gummy Bears <span class="menu-price">- $1</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="popular">
+    <div class="container">
+      <h2>Most Popular Items</h2>
+
+      <div class="popular-grid">
+        <div class="card">
+          <h3>Island Special</h3>
+          <p class="highlight">Mango + Pineapple + Coconut</p>
+          <p>This is our best seller because it mixes the main tropical flavors and tastes super refreshing.</p>
+        </div>
+
+        <div class="card">
+          <h3>Piña Colada Chill</h3>
+          <p class="highlight">Piña Colada + Coconut + Condensed Milk</p>
+          <p>This one is popular because it tastes sweeter and more creamy, almost like a tropical drink.</p>
+        </div>
+
+        <div class="card">
+          <h3>Tropical Punch Mix</h3>
+          <p class="highlight">Tropical Punch + Watermelon + Blue Raspberry</p>
+          <p>This one stands out because it is colorful, fruity, and easy to remember.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="events" class="events">
+    <div class="container">
+      <h2>Event Schedule</h2>
+      <p>Catch us at local parks, school events, and summer festivals around Riverside and Brookfield.</p>
+
+      <div class="event-list">
+        <div class="event-item">
+          <strong>Friday:</strong> Riverside Park - 3:00 PM to 7:00 PM
+        </div>
+        <div class="event-item">
+          <strong>Saturday:</strong> Brookfield Community Event - 12:00 PM to 5:00 PM
+        </div>
+        <div class="event-item">
+          <strong>Sunday:</strong> Local Sports Fields - 1:00 PM to 6:00 PM
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="about">
+    <div class="container">
+      <h2>About Us</h2>
+      <p>Island Ice Co. is a tropical shaved ice food truck made to bring fun summer flavors to local events.</p>
+      <p>We focus on simple menu options, bright branding, and fast service so customers can grab something cold and refreshing on the go.</p>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="container">
+      <h2>Contact Us</h2>
+
+      <div class="social-grid">
+        <div class="card">
+          <h3>Contact Info</h3>
+          <p><strong>Owner:</strong> Philip N.</p>
+          <p><strong>Email:</strong> 26nekrashchukpx@rbhs.com</p>
+          <p><strong>Phone:</strong> (555) 214-7789</p>
+        </div>
+
+        <div class="card">
+          <h3>Social Media</h3>
+          <p><strong>Instagram:</strong> @IslandIceCo</p>
+          <p><strong>TikTok:</strong> @IslandIceCo</p>
+        </div>
+
+        <div class="card">
+          <h3>Service Area</h3>
+          <p>Serving local parks, school events, neighborhoods, and community events around Riverside and Brookfield.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Island Ice Co. | Taste the tropics.</p>
+  </footer>
+
+</body>
+</html>
